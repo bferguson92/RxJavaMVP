@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity(), PresenterContract.GitRepoView {
     }
 
     private fun printMyList(list: List<RepoResponse>) {
+        displayAvatar()
+
         val stringBuilder = StringBuilder()
 
         list.forEach{repoResponse ->
@@ -51,6 +53,15 @@ class MainActivity : AppCompatActivity(), PresenterContract.GitRepoView {
         }
 
         text_view_view.text = stringBuilder.toString()
+    }
+
+    private fun displayAvatar() {
+        val fragment = ProfileFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.frame_layout_my, fragment)
+            .addToBackStack(fragment.tag)
+            .commit()
     }
 
 }
